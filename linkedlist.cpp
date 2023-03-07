@@ -24,8 +24,7 @@ bool LinkedList::addNode(int id, string* data){
 
     //Verify that id is int
     if(head == NULL && id > 1){//If list is empty
-        addFirst(newNode);
-        success = true;
+        success = addFirst(newNode, success);
     }else if(id > 1){//Check if id is greater than 1
         Node *current = head; 
         while(current){
@@ -83,8 +82,11 @@ LinkedList::~LinkedList(){
 
 //Private methods
 
-void LinkedList::addFirst(Node* newNode){
+bool LinkedList::addFirst(Node* newNode, bool success){
     head = newNode;
     newNode->next = NULL;
     newNode->prev = NULL;
+    success = true;
+    return success;
 }
+

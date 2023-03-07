@@ -23,7 +23,7 @@ public:
 
 private:
     Node *head; 
-    void addFirst(Node*);
+    bool addFirst(Node*, bool);
 
 };
 
