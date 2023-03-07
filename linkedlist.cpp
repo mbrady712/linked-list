@@ -11,6 +11,13 @@ LinkedList::LinkedList(){
 }
 
 bool LinkedList::addNode(int id, string* data){
+
+    //create node dynamically
+    Node *node = new Node;
+    node->data.id = id;
+    node->data.data = *data;
+
+
     return true;
 }
 
