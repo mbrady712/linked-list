@@ -9,6 +9,32 @@
 #include "main.h"
 
 int main() {
+
+    //My testing
+
+    /*
+        LinkedList list;
+
+    string testString = "Hello";
+
+    //Empty case
+    list.addNode(1, &testString);
+
+    //Add new tail case
+    list.addNode(3, &testString);
+
+    //General case
+    list.addNode(2, &testString);
+
+    //Add new head case
+    list.addNode(0, &testString);
+
+    list.printList();
+    
+    */
+
+    //His testing
+
     //seed the rand function
     srand(time(NULL));
 
@@ -112,7 +138,6 @@ int main() {
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
     list.printList();
     cout << endl;
-
 
     return 0;
 }
