@@ -15,14 +15,12 @@ LinkedList::LinkedList(){
 bool LinkedList::addNode(int id, string* data){
     bool success = false;
 
-    //create node dynamically.
-    Node *newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    //Verify that id is int and restructure logic to correctly ignore duplicate ids
-    //Check if id is positive int greater than 0
-    if(id > 0){
+    //Check if id is positive int greater than 0 and that string is not empty
+    if(id > 0 && *data != ""){
+        //Create node dynamically.
+        Node *newNode = new Node;
+        newNode->data.id = id;
+        newNode->data.data = *data;
         if(head == NULL){//If list is empty
             success = addFirst(newNode, success);
         }else{
