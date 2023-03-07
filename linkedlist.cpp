@@ -29,11 +29,7 @@ bool LinkedList::addNode(int id, string* data){
         Node *current = head; 
         while(current){
             if(id < head->data.id && success == false && id != head->data.id){//add new head case
-                head->prev = newNode;
-                newNode->next = head;
-                newNode->prev = NULL;
-                head = newNode;
-                success = true;
+                success = addHead(newNode, success);
             }else if(id < current->data.id && success == false && id != current->data.id){//general case
                 newNode->next = current;
                 newNode->prev = current->prev;
@@ -86,6 +82,15 @@ bool LinkedList::addFirst(Node* newNode, bool success){
     head = newNode;
     newNode->next = NULL;
     newNode->prev = NULL;
+    success = true;
+    return success;
+}
+
+bool LinkedList::addHead(Node* newNode, bool success){
+    head->prev = newNode;
+    newNode->next = head;
+    newNode->prev = NULL;
+    head = newNode;
     success = true;
     return success;
 }

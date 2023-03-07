@@ -24,7 +24,7 @@ public:
 private:
     Node *head; 
     bool addFirst(Node*, bool);
-
+    bool addHead(Node*, bool);
 };
 
 #endif //LINKED_LIST
