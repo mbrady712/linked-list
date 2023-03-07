@@ -22,7 +22,7 @@ bool LinkedList::addNode(int id, string* data){
     newNode->data.id = id;
     newNode->data.data = *data;
 
-    //Verify that id is int
+    //Verify that id is int and restructure logic to correctly ignore duplicate ids
     if(head == NULL && id > 1){//If list is empty
         success = addFirst(newNode, success);
     }else if(id > 1){//Check if id is greater than 1
@@ -31,11 +31,7 @@ bool LinkedList::addNode(int id, string* data){
             if(id < head->data.id && success == false && id != head->data.id){//add new head case
                 success = addHead(newNode, success);
             }else if(id < current->data.id && success == false && id != current->data.id){//general case
-                newNode->next = current;
-                newNode->prev = current->prev;
-                current->prev->next = newNode;
-                current->prev = newNode;
-                success = true;
+                success = addMiddle(newNode, current, success);
             }else if(current->next == NULL && success == false && id != current->data.id){//add new tail case
                 newNode->next = NULL;  
                 newNode->prev = current;
@@ -91,6 +87,15 @@ bool LinkedList::addHead(Node* newNode, bool success){
     newNode->next = head;
     newNode->prev = NULL;
     head = newNode;
+    success = true;
+    return success;
+}
+
+bool LinkedList::addMiddle(Node* newNode, Node* current, bool success){
+    newNode->next = current;
+    newNode->prev = current->prev;
+    current->prev->next = newNode;
+    current->prev = newNode;
     success = true;
     return success;
 }
