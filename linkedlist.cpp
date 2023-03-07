@@ -7,7 +7,7 @@ Purpose: This program contians a doubly Linked List ADT.
 #include "linkedlist.h"
 
 LinkedList::LinkedList(){
-
+    Node *head = NULL;
 }
 
 bool LinkedList::addNode(int id, string* data){
