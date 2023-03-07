@@ -6,6 +6,8 @@ Purpose: This program contians a doubly Linked List ADT.
 
 #include "linkedlist.h"
 
+//Public methods
+
 LinkedList::LinkedList(){
     head = NULL;
 }
@@ -13,15 +15,16 @@ LinkedList::LinkedList(){
 bool LinkedList::addNode(int id, string* data){
     bool success = false;
 
+    //Create private helper functions for addFirst, addHead, addMiddle, addTail
+
     //create node dynamically.
     Node *newNode = new Node;
     newNode->data.id = id;
     newNode->data.data = *data;
 
-    if(head == NULL){//If list is empty
-        head = newNode;
-        newNode->next = NULL;
-        newNode->prev = NULL;
+    //Verify that id is int
+    if(head == NULL && id > 1){//If list is empty
+        addFirst(newNode);
         success = true;
     }else if(id > 1){//Check if id is greater than 1
         Node *current = head; 
@@ -76,4 +79,12 @@ bool LinkedList::exists(int id){
 
 LinkedList::~LinkedList(){
 
+}
+
+//Private methods
+
+void LinkedList::addFirst(Node* newNode){
+    head = newNode;
+    newNode->next = NULL;
+    newNode->prev = NULL;
 }
