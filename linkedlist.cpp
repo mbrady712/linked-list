@@ -15,8 +15,6 @@ LinkedList::LinkedList(){
 bool LinkedList::addNode(int id, string* data){
     bool success = false;
 
-    //Create private helper functions for addFirst, addHead, addMiddle, addTail
-
     //create node dynamically.
     Node *newNode = new Node;
     newNode->data.id = id;
@@ -33,10 +31,7 @@ bool LinkedList::addNode(int id, string* data){
             }else if(id < current->data.id && success == false && id != current->data.id){//general case
                 success = addMiddle(newNode, current, success);
             }else if(current->next == NULL && success == false && id != current->data.id){//add new tail case
-                newNode->next = NULL;  
-                newNode->prev = current;
-                current->next = newNode;
-                success = true;
+                success = addTail(newNode, current, success);
             }
             current = current->next;
         }
@@ -96,6 +91,14 @@ bool LinkedList::addMiddle(Node* newNode, Node* current, bool success){
     newNode->prev = current->prev;
     current->prev->next = newNode;
     current->prev = newNode;
+    success = true;
+    return success;
+}
+
+bool LinkedList::addTail(Node* newNode, Node* current, bool success){
+    newNode->next = NULL;  
+    newNode->prev = current;
+    current->next = newNode;
     success = true;
     return success;
 }

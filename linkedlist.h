@@ -26,6 +26,7 @@ private:
     bool addFirst(Node*, bool);
     bool addHead(Node*, bool);
     bool addMiddle(Node*, Node*, bool);
+    bool addTail(Node*, Node*, bool);
 };
 
 #endif //LINKED_LIST
