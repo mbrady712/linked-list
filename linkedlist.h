@@ -7,7 +7,6 @@ Purpose: This program contians a doubly Linked List ADT.
 #define LINKED_LIST
 
 #include "data.h"
-#include <iostream>  
 
 class LinkedList {
 
