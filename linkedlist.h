@@ -23,10 +23,10 @@ public:
 
 private:
     Node *head; 
-    bool addFirst(Node*, bool);
-    bool addHead(Node*, bool);
-    bool addMiddle(Node*, Node*, bool);
-    bool addTail(Node*, Node*, bool);
+    bool addFirst(int, string*, bool);
+    bool addHead(int, string*, bool);
+    bool addMiddle(int, string*, Node*, bool);
+    bool addTail(int, string*, Node*, bool);
 };
 
 #endif //LINKED_LIST

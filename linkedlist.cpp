@@ -17,21 +17,17 @@ bool LinkedList::addNode(int id, string* data){
 
     //Check if id is positive int greater than 0 and that string is not empty
     if(id > 0 && *data != ""){
-        //Create node dynamically.
-        Node *newNode = new Node;
-        newNode->data.id = id;
-        newNode->data.data = *data;
         if(head == NULL){//If list is empty
-            success = addFirst(newNode, success);
+            success = addFirst(id, data, success);
         }else{
             Node *current = head; 
             while(success == false && id != current->data.id){
                 if(id < head->data.id){//add new head case
-                    success = addHead(newNode, success);
+                    success = addHead(id, data, success);
                 }else if(id < current->data.id){//general case
-                    success = addMiddle(newNode, current, success);
+                    success = addMiddle(id, data, current, success);
                 }else if(current->next == NULL){//add new tail case
-                    success = addTail(newNode, current, success);
+                    success = addTail(id, data, current, success);
                 }
                 current = current->next;
             }
@@ -70,7 +66,13 @@ LinkedList::~LinkedList(){
 
 //Private methods
 
-bool LinkedList::addFirst(Node* newNode, bool success){
+bool LinkedList::addFirst(int id, string* data, bool success){
+    //Create node dynamically.
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    //Add it to the list
     head = newNode;
     newNode->next = NULL;
     newNode->prev = NULL;
@@ -78,7 +80,13 @@ bool LinkedList::addFirst(Node* newNode, bool success){
     return success;
 }
 
-bool LinkedList::addHead(Node* newNode, bool success){
+bool LinkedList::addHead(int id, string* data, bool success){
+    //Create node dynamically
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    //Add it to the list
     head->prev = newNode;
     newNode->next = head;
     newNode->prev = NULL;
@@ -87,7 +95,13 @@ bool LinkedList::addHead(Node* newNode, bool success){
     return success;
 }
 
-bool LinkedList::addMiddle(Node* newNode, Node* current, bool success){
+bool LinkedList::addMiddle(int id, string* data, Node* current, bool success){
+    //Create node dynamically.
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    //Add it to the list
     newNode->next = current;
     newNode->prev = current->prev;
     current->prev->next = newNode;
@@ -96,7 +110,13 @@ bool LinkedList::addMiddle(Node* newNode, Node* current, bool success){
     return success;
 }
 
-bool LinkedList::addTail(Node* newNode, Node* current, bool success){
+bool LinkedList::addTail(int id, string* data, Node* current, bool success){
+    //Create node dynamically.
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    //Add it to the list
     newNode->next = NULL;  
     newNode->prev = current;
     current->next = newNode;
