@@ -21,19 +21,22 @@ bool LinkedList::addNode(int id, string* data){
     newNode->data.data = *data;
 
     //Verify that id is int and restructure logic to correctly ignore duplicate ids
-    if(head == NULL && id > 1){//If list is empty
-        success = addFirst(newNode, success);
-    }else if(id > 1){//Check if id is greater than 1
-        Node *current = head; 
-        while(current){
-            if(id < head->data.id && success == false && id != head->data.id){//add new head case
-                success = addHead(newNode, success);
-            }else if(id < current->data.id && success == false && id != current->data.id){//general case
-                success = addMiddle(newNode, current, success);
-            }else if(current->next == NULL && success == false && id != current->data.id){//add new tail case
-                success = addTail(newNode, current, success);
+    //Check if id is positive int greater than 0
+    if(id > 0){
+        if(head == NULL){//If list is empty
+            success = addFirst(newNode, success);
+        }else{
+            Node *current = head; 
+            while(success == false && id != current->data.id){
+                if(id < head->data.id){//add new head case
+                    success = addHead(newNode, success);
+                }else if(id < current->data.id){//general case
+                    success = addMiddle(newNode, current, success);
+                }else if(current->next == NULL){//add new tail case
+                    success = addTail(newNode, current, success);
+                }
+                current = current->next;
             }
-            current = current->next;
         }
     }
     return success;
