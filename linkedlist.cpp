@@ -21,7 +21,7 @@ bool LinkedList::addNode(int id, string* data){
             success = addFirst(id, data, success);
         }else{
             Node *current = head; 
-            while(success == false && id != current->data.id){
+            while(current && success == false && id != current->data.id){
                 if(id < head->data.id){//add new head case
                     success = addHead(id, data, success);
                 }else if(id < current->data.id){//general case
@@ -36,20 +36,22 @@ bool LinkedList::addNode(int id, string* data){
     return success;
 }
 
-bool LinkedList::deleteNode(int id){
+bool LinkedList::deleteNode(int id){//Problem may be deleting last item in list
     bool success = false;
     Node *current = head; 
-    while(success == false){
-        if(id == head->data.id){//delete head case
-            success = deleteHead(id, current, success);
-        }else if(id == current->data.id && current->next != NULL){//general case
-            success = deleteMiddle(id, current, success);
-        }else if(id == current->data.id && current->next == NULL){//delete tail case
-            success = deleteTail(id, current, success);
+    if(id > 0){
+        while(current && success == false){
+            if(id == head->data.id){//delete head case
+                success = deleteHead(id, current, success);
+            }else if(id == current->data.id && current->next != NULL){//general case
+                success = deleteMiddle(id, current, success);
+            }else if(id == current->data.id && current->next == NULL){//delete tail case
+                success = deleteTail(id, current, success);
+            }
+            current = current->next;
         }
-        current = current->next;
     }
-    return true;
+    return success;
 }
 
 bool LinkedList::getNode(int id, Data* data){
@@ -104,7 +106,7 @@ bool LinkedList::clearList(){
     while(current){
         delete head;
         current = current->next;
-        head = current;
+        head = current;//Can most likely just put deleteHead() in here
     }
     if(!current){
         success = true;
@@ -183,8 +185,12 @@ Node* LinkedList::createNode(int id, string* data){
 //Methods used by deleteNode()
 
 bool LinkedList::deleteHead(int id, Node* current, bool success){
-    current->next->prev = NULL;
-    head = current->next;
+    if(current->next == NULL){//If only one item in list
+        head = NULL;
+    }else{
+        current->next->prev = NULL;
+        head = current->next;
+    }
     delete current;
     success = true;
     return success;
