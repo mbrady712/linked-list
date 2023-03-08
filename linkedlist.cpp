@@ -43,7 +43,7 @@ bool LinkedList::deleteNode(int id){
         if(id == head->data.id){//delete head case
             success = deleteHead(id, current, success);
         }else if(id == current->data.id && current->next != NULL){//general case
-            success = deleteMiddle(id);
+            success = deleteMiddle(id, current, success);
         }else if(id == current->data.id && current->next == NULL){//delete tail case
             success = deleteTail(id);
         }
@@ -64,6 +64,7 @@ void LinkedList::printList(bool){
         current = current->next;
         count++;
     }
+    std::cout << std::endl;
 }
 
 int LinkedList::getCount(){
@@ -144,8 +145,12 @@ bool LinkedList::deleteHead(int id, Node* current, bool success){
     return success;
 }
 
-bool LinkedList::deleteMiddle(int id){
-    return true;
+bool LinkedList::deleteMiddle(int id, Node* current, bool success){
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
+    delete current;
+    success = true;
+    return success;
 }
 
 bool LinkedList::deleteTail(int id){

@@ -30,7 +30,7 @@ private:
     bool addTail(int, string*, Node*, bool);
     Node* createNode(int, string*);
     bool deleteHead(int, Node*, bool);
-    bool deleteMiddle(int);
+    bool deleteMiddle(int, Node*, bool);
     bool deleteTail(int);
 };
 
