@@ -31,7 +31,7 @@ private:
     Node* createNode(int, string*);
     bool deleteHead(int, Node*, bool);
     bool deleteMiddle(int, Node*, bool);
-    bool deleteTail(int);
+    bool deleteTail(int, Node*, bool);
 };
 
 #endif //LINKED_LIST

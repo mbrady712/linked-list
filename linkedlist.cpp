@@ -45,7 +45,7 @@ bool LinkedList::deleteNode(int id){
         }else if(id == current->data.id && current->next != NULL){//general case
             success = deleteMiddle(id, current, success);
         }else if(id == current->data.id && current->next == NULL){//delete tail case
-            success = deleteTail(id);
+            success = deleteTail(id, current, success);
         }
         current = current->next;
     }
@@ -153,7 +153,10 @@ bool LinkedList::deleteMiddle(int id, Node* current, bool success){
     return success;
 }
 
-bool LinkedList::deleteTail(int id){
-    return true;
+bool LinkedList::deleteTail(int id, Node* current, bool success){
+    current->prev->next = NULL;
+    delete current;
+    success = true;
+    return success;
 }
 
