@@ -76,7 +76,15 @@ bool LinkedList::clearList(){
 }
 
 bool LinkedList::exists(int id){
-    return true;
+    bool success = false;
+    Node *current = head; 
+    while(current){
+        if (id == current->data.id){
+            success = true;
+        }
+        current = current->next;
+    }
+    return success;
 }
 
 LinkedList::~LinkedList(){
