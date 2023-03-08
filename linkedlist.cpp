@@ -106,7 +106,7 @@ bool LinkedList::clearList(){
     while(current){
         delete head;
         current = current->next;
-        head = current;//Can most likely just put deleteHead() in here
+        head = current;
     }
     if(!current){
         success = true;
