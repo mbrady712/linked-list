@@ -1,6 +1,6 @@
 /*********************
 Name: Michael Brady
-Programmin Fundamentals III
+Programming Fundamentals III
 Purpose: This program contians a doubly Linked List ADT.
 **********************/
 
