@@ -110,6 +110,7 @@ bool LinkedList::clearList(){
     if(!current){
         success = true;
     }
+    head = NULL;
     return success;
 }
 
