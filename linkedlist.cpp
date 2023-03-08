@@ -66,7 +66,6 @@ bool LinkedList::getNode(int id, Data* data){
         current = current->next;
     }
     return success;
-    return true;
 }
 
 void LinkedList::printList(bool backward){
