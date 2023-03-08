@@ -36,7 +36,7 @@ bool LinkedList::addNode(int id, string* data){
     return success;
 }
 
-bool LinkedList::deleteNode(int id){//Problem may be deleting last item in list
+bool LinkedList::deleteNode(int id){
     bool success = false;
     Node *current = head; 
     if(id > 0){
