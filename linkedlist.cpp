@@ -89,7 +89,13 @@ void LinkedList::printList(bool backward){
 }
 
 int LinkedList::getCount(){
-    return 0;
+    int count = 0;
+    Node *current = head; 
+    while(current){
+        current = current->next;
+        count++;
+    }
+    return count;
 }
 
 bool LinkedList::clearList(){
