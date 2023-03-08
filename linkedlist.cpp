@@ -53,12 +53,21 @@ bool LinkedList::deleteNode(int id){
 }
 
 bool LinkedList::getNode(int id, Data* data){
-
+    bool success = false;
+    Node *current = head; 
+    while(current){
+        if (id == current->data.id){
+            data->id = current->data.id;
+            data->data = current->data.data;
+            success = true; 
+        }
+        current = current->next;
+    }
+    return success;
     return true;
 }
 
 void LinkedList::printList(bool backward){
-    std::cout << backward << std::endl;
     int count = 1;
     Node *current = head; 
     if(!backward){
@@ -70,13 +79,12 @@ void LinkedList::printList(bool backward){
         std::cout << std::endl;
     }else{
         current = getTail(current);
-        std::cout << current->data.id << std::endl;
-        std::cout << current->data.data << std::endl;
         while(current){
             std::cout << count << ": " << current->data.id << " : " << current->data.data << std::endl;
             current = current->prev;
             count++;
         }
+        std::cout << std::endl;
     }
 }
 
