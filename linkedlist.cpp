@@ -93,7 +93,17 @@ int LinkedList::getCount(){
 }
 
 bool LinkedList::clearList(){
-    return true;
+    bool success = false;
+    Node *current = head;
+    while(current){
+        delete head;
+        current = current->next;
+        head = current;
+    }
+    if(!current){
+        success = true;
+    }
+    return success;
 }
 
 bool LinkedList::exists(int id){
