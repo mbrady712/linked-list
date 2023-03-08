@@ -37,6 +37,18 @@ bool LinkedList::addNode(int id, string* data){
 }
 
 bool LinkedList::deleteNode(int id){
+    bool success = false;
+    Node *current = head; 
+    while(success == false){
+        if(id == head->data.id){//delete head case
+            success = deleteHead(id);
+        }else if(id == current->data.id && current->next != NULL){//general case
+            success = deleteMiddle(id);
+        }else if(id == current->data.id && current->next == NULL){//delete tail case
+            success = deleteTail(id);
+        }
+        current = current->next;
+    }
     return true;
 }
 
@@ -45,7 +57,13 @@ bool LinkedList::getNode(int id, Data* data){
 }
 
 void LinkedList::printList(bool){
-
+    int count = 1;
+    Node *current = head; 
+    while(current){
+        std::cout << count << ": " << current->data.id << " : " << current->data.data << std::endl;
+        current = current->next;
+        count++;
+    }
 }
 
 int LinkedList::getCount(){
@@ -65,6 +83,8 @@ LinkedList::~LinkedList(){
 }
 
 //Private methods
+
+//Methods used by addNode()
 
 bool LinkedList::addFirst(int id, string* data, bool success){
     //Create node dynamically
@@ -113,4 +133,5 @@ Node* LinkedList::createNode(int id, string* data){
     newNode->data.data = *data;
     return newNode;
 }
+
 
