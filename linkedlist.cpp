@@ -125,7 +125,7 @@ bool LinkedList::exists(int id){
 }
 
 LinkedList::~LinkedList(){
-
+    clearList();
 }
 
 //Private methods
