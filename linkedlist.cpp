@@ -71,9 +71,11 @@ bool LinkedList::getNode(int id, Data* data){
 void LinkedList::printList(bool backward){
     int count = 1;
     Node *current = head; 
-    if(!backward){
+    if(head == NULL){//If list is empty
+        std::cout << "\tList is empty" << std::endl;
+    }else if(!backward){
         while(current){
-            std::cout << count << ": " << current->data.id << " : " << current->data.data << std::endl;
+            std::cout << "\t" << count << ": " << current->data.id << " : " << current->data.data << std::endl;
             current = current->next;
             count++;
         }
@@ -81,7 +83,7 @@ void LinkedList::printList(bool backward){
     }else{
         current = getTail(current);
         while(current){
-            std::cout << count << ": " << current->data.id << " : " << current->data.data << std::endl;
+            std::cout << "\t" << count << ": " << current->data.id << " : " << current->data.data << std::endl;
             current = current->prev;
             count++;
         }
