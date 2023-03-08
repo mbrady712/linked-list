@@ -41,7 +41,7 @@ bool LinkedList::deleteNode(int id){
     Node *current = head; 
     while(success == false){
         if(id == head->data.id){//delete head case
-            success = deleteHead(id);
+            success = deleteHead(id, current, success);
         }else if(id == current->data.id && current->next != NULL){//general case
             success = deleteMiddle(id);
         }else if(id == current->data.id && current->next == NULL){//delete tail case
@@ -134,4 +134,21 @@ Node* LinkedList::createNode(int id, string* data){
     return newNode;
 }
 
+//Methods used by deleteNode()
+
+bool LinkedList::deleteHead(int id, Node* current, bool success){
+    current->next->prev = NULL;
+    head = current->next;
+    delete current;
+    success = true;
+    return success;
+}
+
+bool LinkedList::deleteMiddle(int id){
+    return true;
+}
+
+bool LinkedList::deleteTail(int id){
+    return true;
+}
 
